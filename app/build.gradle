@@ -110,14 +110,18 @@ dependencies {
     implementation project(path: ':cameraview')
 }
 
+def getArtificatId = { ->
+    return "native-camera"
+}
+
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-//                from components.metaClass
-                groupId = 'com.github.naveen'
-                artifactId = 'native-camera'
+                groupId = 'com.github.NaveenPokhriyal'
+                artifactId = getArtificatId()
                 version = '1.0'
+                artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
             }
         }
     }

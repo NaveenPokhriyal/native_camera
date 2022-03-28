@@ -42,26 +42,26 @@ dependencies {
 }
 
 // Publishing
-
-publisher {
-    project.description = "A well documented, high-level Android interface that makes capturing " +
-            "pictures and videos easy, addressing all of the common issues and needs. " +
-            "Real-time filters, gestures, watermarks, frame processing, RAW, output of any size."
-    project.artifact = "cameraview"
-    project.group = "com.otaliastudios"
-    project.url = "https://github.com/natario1/CameraView"
-    project.addLicense(License.APACHE_2_0)
-    bintray {
-        release.setSources(Release.SOURCES_AUTO)
-        release.setDocs(Release.DOCS_AUTO)
-        auth.user = "BINTRAY_USER"
-        auth.key = "BINTRAY_KEY"
-        auth.repo = "BINTRAY_REPO"
-    }
-    directory {
-        directory = file(repositories.mavenLocal().url).absolutePath
-    }
-}
+//
+//publisher {
+//    project.description = "A well documented, high-level Android interface that makes capturing " +
+//            "pictures and videos easy, addressing all of the common issues and needs. " +
+//            "Real-time filters, gestures, watermarks, frame processing, RAW, output of any size."
+//    project.artifact = "cameraview"
+//    project.group = "com.otaliastudios"
+//    project.url = "https://github.com/natario1/CameraView"
+//    project.addLicense(License.APACHE_2_0)
+//    bintray {
+//        release.setSources(Release.SOURCES_AUTO)
+//        release.setDocs(Release.DOCS_AUTO)
+//        auth.user = "BINTRAY_USER"
+//        auth.key = "BINTRAY_KEY"
+//        auth.repo = "BINTRAY_REPO"
+//    }
+//    directory {
+//        directory = file(repositories.mavenLocal().url).absolutePath
+//    }
+//}
 
 // Code Coverage
 val buildDir = project.buildDir.absolutePath
