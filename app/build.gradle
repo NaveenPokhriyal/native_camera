@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
+    id 'maven-publish'
 }
 
 android {
@@ -107,4 +108,17 @@ dependencies {
     implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
 //    api 'com.otaliastudios:cameraview:2.6.4'
     implementation project(path: ':cameraview')
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+//                from components.metaClass
+                groupId = 'com.github.naveen'
+                artifactId = 'native-camera'
+                version = '1.0'
+            }
+        }
+    }
 }
