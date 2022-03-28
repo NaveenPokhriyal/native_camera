@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="onClickHandler"
+            type="com.root.nativeCamera.handler.OnClickHandler" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clParent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.camera.CameraActivity">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.otaliastudios.cameraview.CameraView
+                    android:id="@+id/camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:keepScreenOn="true"
+                    app:cameraAudio="on"
+                    app:cameraAutoFocusMarker="@string/cameraview_default_autofocus_marker"
+                    app:cameraEngine="camera1"
+                    app:cameraExperimental="true"
+                    app:cameraFacing="back"
+                    app:cameraGestureLongTap="none"
+                    app:cameraGesturePinch="zoom"
+                    app:cameraGestureScrollHorizontal="filterControl1"
+                    app:cameraGestureScrollVertical="exposureCorrection"
+                    app:cameraGestureTap="autoFocus"
+                    app:cameraGrid="off"
+                    app:cameraMode="picture"
+                    app:cameraPlaySounds="true"
+                    app:cameraPreview="glSurface" />
+
+                <View
+                    android:id="@+id/overlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:foreground="@android:color/transparent"
+                    android:visibility="visible" />
+
+            </FrameLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glHorizontalCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.88" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glHorizontalTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.08" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clTopMenuContainer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingHorizontal="@dimen/dp20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/glHorizontalTop"
+                app:layout_constraintVertical_bias="0">
+
+                <LinearLayout
+                    android:id="@+id/llLeftMenuSelector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/ivMenuLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{(view)->onClickHandler.onFlashUtilClick(view)}"
+                        android:paddingHorizontal="@dimen/dp5"
+                        android:paddingVertical="@dimen/dp8"
+                        android:src="@drawable/ic_left_menu_auto_flash" />
+
+                    <ImageView
+                        android:id="@+id/ivLeftMenu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/left_menu_selector_bg" />
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/ivMenuRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(view)->onClickHandler.onEffectUtilClick(view)}"
+                    android:padding="@dimen/dp8"
+                    android:src="@drawable/right_menu_selector_bg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clParentLeftMenuContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/llLeftMenuSelector"
+                    app:layout_constraintStart_toStartOf="@+id/llLeftMenuSelector"
+                    app:layout_constraintTop_toBottomOf="@+id/llLeftMenuSelector">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clChildLeftMenuContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/ivFlashOn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(view)->onClickHandler.onFlashOnClick(view)}"
+                            android:padding="@dimen/dp8"
+                            android:src="@drawable/flash_on_selector_bg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivFlashOff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(view)->onClickHandler.onFlashOffClick(view)}"
+                            android:padding="@dimen/dp8"
+                            android:src="@drawable/flash_off_selected_bg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivFlashOn" />
+
+                        <ImageView
+                            android:id="@+id/ivFlashAuto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(view)->onClickHandler.onFlashAutoClick(view)}"
+                            android:padding="@dimen/dp8"
+                            android:src="@drawable/flash_auto_select_bg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivFlashOff" />
+
+                        <ImageView
+                            android:id="@+id/ivTorch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(view)->onClickHandler.onTorchOnClick(view)}"
+                            android:padding="@dimen/dp8"
+                            android:src="@drawable/torch_selector_bg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivFlashAuto" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clParentRightMenuContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@+id/ivMenuRight"
+                    app:layout_constraintStart_toStartOf="@+id/ivMenuRight"
+                    app:layout_constraintTop_toBottomOf="@+id/ivMenuRight">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clChildRightMenuContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/ivBeautyEffect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(view)->onClickHandler.onBeautyEffectSelect(view)}"
+                            android:padding="@dimen/dp8"
+                            android:src="@drawable/effect_selector_bg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivBlackAndWhiteEffect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(view)->onClickHandler.onGreyScaleFilterSelect(view)}"
+                            android:padding="@dimen/dp8"
+                            android:src="@drawable/contrast_selector_bg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ivBeautyEffect" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clCameraFilterContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/dp8"
+                android:paddingEnd="@dimen/dp10"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@+id/glHorizontalBottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <SeekBar
+                    android:id="@+id/sbBeautyLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:maxHeight="@dimen/dp4"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingBottom="@dimen/dp10"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/seekbar_bg"
+                    android:thumb="@drawable/seekbar_thumb_drawable"
+                    android:thumbOffset="0dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clVideoTimerContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dp25"
+                android:paddingVertical="@dimen/dp10"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/glHorizontalBottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivDot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_record_dot"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvTimer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvTimer" />
+
+                <TextView
+                    android:id="@+id/tvTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp8"
+                    android:gravity="center"
+                    android:text="00:00"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ivDot"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glHorizontalBottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.78" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clBottomViewContainer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/glHorizontalBottom">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clOptionContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+
+                    android:background="@android:color/transparent"
+                    android:paddingHorizontal="@dimen/dp20"
+                    app:layout_constraintBottom_toTopOf="@+id/clCaptureContainer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_weight="0.5">
+
+                    <ImageView
+
+                        android:id="@+id/cbVideoSelector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:onClick="@{(view)->onClickHandler.onSelectVideo(view)}"
+                        android:padding="@dimen/dp8"
+                        android:visibility="gone"
+                        android:src="@drawable/video_selector_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/cbImageSelector"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/cbImageSelector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp22"
+                        android:gravity="center"
+                        android:onClick="@{(view)->onClickHandler.onSelectCamera(view)}"
+                        android:padding="@dimen/dp8"
+                        android:visibility="gone"
+                        android:src="@drawable/camera_selector_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/cbGallerySelector"
+                        app:layout_constraintStart_toEndOf="@+id/cbVideoSelector"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/cbGallerySelector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:onClick="@{(view)->onClickHandler.onSelectGallery(view)}"
+                        android:padding="@dimen/dp8"
+                        android:visibility="gone"
+                        android:src="@drawable/gallery_selector_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toEndOf="@+id/cbImageSelector"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clCaptureContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/capture_container_bg"
+                    android:paddingHorizontal="@dimen/dp20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clOptionContainer"
+                    app:layout_constraintVertical_weight="1">
+
+                    <ImageView
+                        android:id="@+id/ivRotateCamera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp8"
+                        android:src="@drawable/ic_rotate"
+                        android:onClick="@{(view)->onClickHandler.onRotateCamera(view)}"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivCapture"
+                        app:layout_constraintEnd_toStartOf="@+id/ivCapture"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/ivCapture" />
+                    <!--                    android:foreground="?android:selectableItemBackgroundBorderless"-->
+
+                    <ImageView
+                        android:id="@+id/ivCapture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:onClick="@{(view)->onClickHandler.onImageCapture(view)}"
+                        android:padding="@dimen/dp8"
+                        android:src="@drawable/ic_capture"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivDummyView"
+                        app:layout_constraintStart_toEndOf="@+id/ivRotateCamera"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.3" />
+
+                    <ImageView
+                        android:id="@+id/ivDummyView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp8"
+                        android:src="@drawable/ic_rotate"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivCapture"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

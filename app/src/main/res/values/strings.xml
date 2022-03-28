@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" >NativeCamera</string>
+    <string name="txt_retake">Retake</string>
+    <string name="txt_save">Save</string>
+    <string name="txt_preview">Preview</string>
+    <string name="msg_adjust_brightness">Please use vertical finger gesture to control brightness.</string>
+    <string name="msg_saving_file">Saving file..</string>
+</resources>
