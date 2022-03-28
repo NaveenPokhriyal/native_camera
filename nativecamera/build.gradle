@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
@@ -12,7 +12,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.root.nativeCamera"
+//        applicationId "com.root.nativeCamera"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -111,7 +111,7 @@ dependencies {
 }
 
 def getArtificatId = { ->
-    return "native-camera"
+    return "nativecamera"
 }
 
 afterEvaluate {
