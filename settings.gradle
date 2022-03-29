@@ -1,3 +1,4 @@
 rootProject.name = "NativeCamera"
 include ':cameraview'
 include ':nativecamera'
+include ':app'
