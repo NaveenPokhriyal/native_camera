@@ -120,7 +120,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.NaveenPokhriyal'
                 artifactId = getArtificatId()
-                version = '0.0.7'
+                version = '0.0.9'
                 artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
             }
         }
