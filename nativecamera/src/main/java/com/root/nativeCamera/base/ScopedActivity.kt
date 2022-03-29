@@ -1,4 +1,4 @@
-package com.example.couponsapp.base
+package com.root.nativeCamera.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

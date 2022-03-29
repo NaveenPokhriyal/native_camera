@@ -1,15 +1,7 @@
 package com.root.nativeCamera.util
 
-import android.annotation.TargetApi
-import android.content.Context
 import android.graphics.Bitmap
-import android.hardware.camera2.CameraAccessException
-import android.hardware.camera2.CameraCharacteristics
-import android.hardware.camera2.CameraManager
-import android.hardware.camera2.CameraMetadata
-import android.os.Build
-import androidx.core.content.ContextCompat.getSystemService
-import com.example.couponsapp.base.ScopedActivity
+import com.root.nativeCamera.base.ScopedActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
