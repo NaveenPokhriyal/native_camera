@@ -17,7 +17,7 @@ import org.kodein.di.generic.instance
 
 open class BaseActivity : ScopedActivity(), KodeinAware {
     override val kodein: Kodein by closestKodein()
-    private lateinit var mMyApp: BaseApplication
+//    private lateinit var mMyApp: BaseApplication
     private val baseViewModel: BaseViewModel by instance()
 
     companion object {
@@ -36,7 +36,7 @@ open class BaseActivity : ScopedActivity(), KodeinAware {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mMyApp = this.applicationContext as BaseApplication
+//        mMyApp = this.applicationContext as BaseApplication
     }
 
     fun showProgress(activity: AppCompatActivity) {
@@ -49,7 +49,7 @@ open class BaseActivity : ScopedActivity(), KodeinAware {
 
     override fun onResume() {
         super.onResume()
-        mMyApp.setCurrentActivity(this)
+//        mMyApp.setCurrentActivity(this)
     }
 
     override fun onPause() {
@@ -63,8 +63,8 @@ open class BaseActivity : ScopedActivity(), KodeinAware {
     }
 
     private fun clearReferences() {
-        val currActivity: Activity? = mMyApp.getCurrentActivity()
-        if (this == currActivity) mMyApp.setCurrentActivity(null)
+//        val currActivity: Activity? = mMyApp.getCurrentActivity()
+//        if (this == currActivity) mMyApp.setCurrentActivity(null)
     }
 
     fun setUpFullScreen() {
